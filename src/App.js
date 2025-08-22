@@ -25,18 +25,21 @@ function App() {
     }, 1000)
   }
 
+  const [color, setcolor]= useState('primary');
+
+
   const toggleMode= ()=>{
     if(mode==='light') {
       setmode('dark');
-      document.body.style.backgroundColor='gray';
+      document.body.style.backgroundColor='#042743';
       showalert("Dark Mode has been enabled", "success");
-      document.title='TextUtils- Dark Mode';
+      setcolor('primary')
     }
     else{
       setmode('light');
       document.body.style.backgroundColor='white';
       showalert("Light Mode has been enabled", "success");
-      document.title='TextUtils- Light Mode';
+      setcolor('white')
     }
   }
   return (
@@ -46,8 +49,8 @@ function App() {
         <Alert alert={alert}/>
         <div className='container mt-5'>
         <Routes>
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/" element={<TextForm showalert={showalert} heading="Try TextUtils - word counter, character counter" mode={mode} />} />
+          <Route exact path="/about" element={<About mode={mode}/>} />
+          <Route exact path="/" element={<TextForm showalert={showalert} heading="Try TextUtils - word counter, character counter" mode={mode} color= {color} />} />
         </Routes>
         </div>
       </Router>
